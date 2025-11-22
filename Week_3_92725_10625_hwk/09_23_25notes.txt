@@ -1,0 +1,63 @@
+#septembet4_2025 #aws_and_the_borg 
+
+Class 7 - 9/23/25
+
+Topics/skills expanded on - CLI, file management, and GitHub
+Goal : upload sample files to GitHub
+
+Notes on Linux and using the CLI
+
+Steps to going through your #file_management
+
+See [[Linux Bag]] for the linux lines run in class for this one. 
+
+
+##### Initial Git Configuration
+1. Set your name :
+````sh
+git config --global user.name "Your Full Name"
+````
+
+2. Set your email : 
+````sh
+git config --global user.email "your.email@example.com"
+````
+
+3. Verify configuration
+````sh
+git config --global --list
+````
+
+##### Creating a repository on GitHub
+- Follow the steps through the basic Git workflow
+
+````sh
+git init
+git add <files to stage>
+git commit -m "<message name>"
+git branch -M main
+git remote add origin <your remote>
+git push -u origin main
+````
+
+##### Terminology needed to understand 
+
+**Repository (Repo):** A project folder that contains all your files, folders, and the complete history of changes. Where your project stays on GitHub
+
+**Remote:** A version of your repository that's stored on a server (like GitHub) rather than your local computer. The connection between your local repo and the GitHub repo.
+
+**Origin:** The default name for the main remote repository. When you clone a repo, GitHub automatically becomes the "origin" remote.
+
+**Pull Request (PR):** A request to merge changes from one branch into another. It allows code review and discussion before changes are integrated.
+
+**Fork:** Your personal copy of someone else's repository. You can make changes to your fork without affecting the original project.
+
+**Clone:** Creating a local copy of a remote repository on your computer.
+
+**Commit:** A snapshot of your changes with a descriptive message. Each commit creates a point in your project's history.
+
+**Push:** Uploading your local commits to the remote repository (GitHub).
+
+**Pull:** Downloading the latest changes from the remote repository to your local copy.
+
+**Merge:** Combining changes from different branches into one branch.

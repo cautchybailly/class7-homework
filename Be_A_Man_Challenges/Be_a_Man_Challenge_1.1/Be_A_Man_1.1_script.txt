@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Background Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background-image: url('https://www.halfmoon.com/images/hero/partial/Eclipse-at-Half-Moon---View.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .text-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 700px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .text-container h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .text-container p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .featured-image {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="text-container">
+        <h1>Be A Man Challenge 1.1</h1>
+        <p>
+            I, Cautchy Bailly, thank Theo, Rob and Aaron along with my team leader Jacques Payne for teaching me about EC2 in AWS. I've been looking at jobs available and as a result of me learning this I am one step closer to netting $450,000 a year. 
+        </p>
+        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800" alt="Featured Image" class="featured-image">
+    </div>
+</body>
+</html>
