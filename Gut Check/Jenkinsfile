@@ -16,7 +16,7 @@ echo 'Repository checked out successfully'
 stage('Terraform Init') {
 steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
+credentialsId: 'terraform-cautchy']]) {
 sh '''
 cd terraform
 terraform init
@@ -28,7 +28,7 @@ terraform init
 stage('Terraform Plan') {
 steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
+credentialsId: 'terraform-cautchy']]) {
 sh '''
 cd terraform
 terraform plan
@@ -40,7 +40,7 @@ terraform plan
 stage('Terraform Apply') {
 steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
+credentialsId: 'terraform-cautchy']]) {
 sh '''
 cd terraform
 terraform apply -auto-approve
