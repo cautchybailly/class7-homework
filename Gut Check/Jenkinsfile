@@ -18,7 +18,7 @@ steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
 credentialsId: 'terraform-cautchy']]) {
 sh '''
-cd terraform
+cd "Gut Check/Terraform"
 terraform init
 '''
 }
@@ -30,7 +30,7 @@ steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
 credentialsId: 'terraform-cautchy']]) {
 sh '''
-cd terraform
+cd "Gut Check/Terraform"
 terraform plan
 '''
 }
@@ -42,7 +42,7 @@ steps {
 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
 credentialsId: 'terraform-cautchy']]) {
 sh '''
-cd terraform
+cd "Gut Check/Terraform"
 terraform apply -auto-approve
 '''
 }
