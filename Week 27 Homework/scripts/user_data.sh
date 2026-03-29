@@ -12,6 +12,9 @@ java -version
 # Install fontconfig (required by Jenkins)
 sudo dnf install fontconfig -y
 
+# Install Git
+sudo dnf install git -y
+
 # Add Jenkins stable repo
 sudo wget -O /etc/yum.repos.d/jenkins.repo \
   https://pkg.jenkins.io/redhat-stable/jenkins.repo
