@@ -54,8 +54,7 @@ class7-gut-check/
 │ ├── outputs.tf # Output values (bucket name, ARN)
 │ └── provider.tf # AWS provider configuration
 └── screenshots/
-├── theo-armageddon-approval.png
-└── *******.png
+└── theo-armageddon-approval.png
 ```
 
 ---
@@ -65,22 +64,21 @@ class7-gut-check/
 -------------------------------------------
 PART 1 — Terraform: Provision the S3 Bucket
 -------------------------------------------
-Please see the individual Terraform files for the code. Effectively, the code is
+Please see the individual Terraform files for the code. Effectively, the code is performing the following:
 
-**provider.tf**
+**provider.tf** |
 This is telling Terraform that we are working with AWS and specifically using version 5.x of the AWS toolkit. It is also letting Terraform know to deploy everything in the region that we specify.
 
-**variables.tf**
+**variables.tf** |
 This is our settings panel. To avoid hardcoding things, we define them once here and then reference them anywhere else that they are needed in the Terraform code. It makes things easier to make changes in one place instead of ten different places anytime a setting needs to be changed.
 
-
-**main.tf**
+**main.tf** |
 This is the "what are we actually building" portion of the code. Specifically, we are building an S3 bucker with the given name and labeling it so that we don't forget what it is for. We also go ahead and make sure that all files uploaded in the S3 bucket have us (the AWS account owner) as the owner of the files (prevents permission headaches). And finally, in this section we let it be knowns 
 
-**outputs.tf**
+**outputs.tf** |
 This portion is the "Tell me what got created" portion. Since we want to know the ID and ARN of the bucket that was created, we configure this output file to query and provide these pieces of information after everything has been successfully created. This information will be referenced with other AWS services if we were to continue onwards and need this bucker and can be used to let Jenkins know which specific bucket it needs to interact with.
 
-**Run Terraform:**
+**Run Terraform:** |
 In order to run everything that we have build, you will head into the appropriate folder with the files and run the Terrafom IvPAD. The commands needed look like this:
 
 ```bash
@@ -107,76 +105,14 @@ PART 2 — Jenkins Pipeline Setup **Make sure that the Jenkinsfile is at the roo
 -------------------------------------------
 
 **Jenkinsfile**
-```groovy
-pipeline {
-agent any
+Our Jenkinsfile is stating that this is a pipeline and we can run it on any Jenkins server that is available. Before running anything, we set the environment variable so every stage knows which AWS region to use. Then we build on everything in order (stage by stage of course).
 
-environment {
-AWS_DEFAULT_REGION = 'us-east-1'
-}
+Stage 1: grab the code from Github
+Stage 2: initialize Terraform using your AWS credentials that you created and stored for Jenkins
+Stage 3: preview what Terraform is going to build. "Get the invoice before confirming that you are buying it" type of energy
+Stage 4: actually build the S3 bucket
+Stage 5: print confirmation of the build log as proof of completion
 
-stages {
-stage('Checkout') {
-steps {
-checkout scm
-echo 'Repository checked out successfully'
-}
-}
-
-stage('Terraform Init') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
-sh '''
-cd terraform
-terraform init
-'''
-}
-}
-}
-
-stage('Terraform Plan') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
-sh '''
-cd terraform
-terraform plan
-'''
-}
-}
-}
-
-stage('Terraform Apply') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'aws-credentials']]) {
-sh '''
-cd terraform
-terraform apply -auto-approve
-'''
-}
-}
-}
-
-stage('Armageddon Clearance') {
-steps {
-echo 'Armageddon clearance confirmed — artifacts deployed to S3'
-echo 'Armageddon Repo: https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main'
-}
-}
-}
-
-post {
-success {
-echo 'Pipeline completed successfully!'
-}
-failure {
-echo 'Pipeline failed — check logs above'
-}
-}
-}
-```
 
 -------------------------------------------
 PART 3 — GitHub Webhook Setup
@@ -196,7 +132,7 @@ git push -u origin main
 - Go to your repo → **Settings → Webhooks → Add webhook**
 - Payload URL: `http://[YOUR-JENKINS-IP]:8080/github-webhook/`
 - Content type: `application/json`
-- Events: **Just the push event** (or All events)
+- Events: **Just the push event** (or All events if you want)
 - Click **Add webhook**
 
 **Step 3 — Configure Jenkins job to trigger on webhook**
@@ -218,17 +154,7 @@ PART 4 — Armageddon Reference File
 -------------------------------------------
 
 **armageddon-link.md**
-```markdown
-# Armageddon Repo Reference
-## Class 7 — Gut Check Lab
-
-**Armageddon Repository:**
-https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main
-
-This link serves as proof of Armageddon clearance for the Class 7 Gut Check lab.
-```
-
-Push this file to your repo along with everything else.
+See the file itself for exact details. Push this file to your repo along with everything else.
 
 ---
 
@@ -245,8 +171,6 @@ Push this file to your repo along with everything else.
 - [ ] Screenshot: GitHub webhook delivery confirmation (green checkmark)
 - [ ] Screenshot: GitHub repo showing all files pushed
 - [ ] Screenshot: Armageddon repo link file in repo
-
-`[FILL IN — paste your screenshots here]`
 
 ---
 
@@ -306,14 +230,15 @@ the largest cost. Verified $0 charges in AWS Cost Explorer after teardown."]
 - [Jenkinsfile Pipeline Syntax](https://www.jenkins.io/doc/book/pipeline/syntax/)
 
 ### b. Books
-[FILL IN — APA 7.0 format if applicable]
+N/A
 
 ### c. Video / Article References
-[FILL IN — TheoU videos, YouTube, Medium articles referenced]
+[\[Learn Jenkins! Complete Jenkins Course - Zero to Hero]](https://www.youtube.com/watch?v=6YZvp2GwT0A)
+
 
 ### d. Repositories
 - Armageddon Repo: https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main
-- Your Lab Repo: [FILL IN]
+- Your Lab Repo: https://github.com/cautchybailly/class7-homework/tree/main/Gut%20Check
 
 ---
 
@@ -365,8 +290,6 @@ terraform version
 terraform init -upgrade
 ```
 
-[FILL IN — any additional errors or issues you encountered]
-
 ---
 
 ## 12. Author & Contributors
@@ -374,12 +297,10 @@ terraform init -upgrade
 | Role | Name |
 |--------------|-----------------|
 | Author | Cautchy Bailly |
-| Group Leader | [FILL IN] |
-| Contributors | [FILL IN] |
-| Group Name | [FILL IN] |
+| Group Leader | Jacques Payne |
+| Group Name | TKO (Tetsuzai Kube Ouroboros)|
 
 **Course:** TheoU DevOps Bootcamp
 **Class:** Class 7 | Gut Check Lab
-**Lab Date:** [FILL IN]
+**Lab Date:** March 29, 2026
 **Version:** 1.0
-**Last Updated:** [FILL IN]
