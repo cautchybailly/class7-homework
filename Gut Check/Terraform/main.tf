@@ -11,7 +11,7 @@ ManagedBy = "Terraform"
 }
 
 resource "aws_s3_bucket_ownership_controls" "ownership" {
-bucket = aws_s3_bucket.class7_gut_check_bucket.id
+bucket = var.bucket_name.id
 rule {
 object_ownership = "BucketOwnerPreferred"
 }
@@ -20,7 +20,7 @@ object_ownership = "BucketOwnerPreferred"
 resource "aws_s3_object" "armageddon_clearance" {
 for_each = fileset("${path.module}/../screenshots/", "*.png")
 
-bucket = aws_s3_bucket.class7_gut_check_bucket.id
+bucket = var.bucket_name.id
 key = each.value
 source = "${path.module}/../screenshots/${each.value}"
 }
