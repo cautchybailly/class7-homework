@@ -1,0 +1,9 @@
+aws-credentials
+pipeline-aws
+terraform
+snyk-security
+pipeline-googlecloudplatform
+google-oauth-plugin
+github-integration
+github-oauth
+pipeline-github

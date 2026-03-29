@@ -28,12 +28,18 @@ echo "
 </head>
 <body>
 <div>
-<h1>Be a Man Challenge 1.1</h1>
-<h1>With this class I will net $450,000+ per year!</h1>
+<h1>AWS Instance Details for Be A Man Challenge 1.1</h1>
+<h1>Cautchy's declaration</h1>
+<p> I, Cautchy Bailly, thank Theo and The Teachers along with Mr. Jacques Payne for teaching me about EC2s in AWS. One step closer to freedom! With this class I will net $1m annually in base salary ($175,000+) and passive income.</p>
 
 <br>
-# insert an image or GIF
-<img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/be/47/2c/studio-city-macau.jpg?w=1800&h=1000&s=1" alt="tripadvisor.com">
+<img src="https://cdn.abcotvs.com/dip/images/18047433_102025-otrc-natgeobestofworld1-img.jpg" alt="itniceman.com">
+<br>
+
+<p>See me on a yacht hanging out with Olivia Yace </p>
+
+<br>
+<img src="https://ayther.fr/wp-content/uploads/2025/12/olivia-yace-scandale-miss-univers.jpg" alt="yace.com">
 <br>
 
 <p><b>Instance Name:</b> $(hostname -f) </p>

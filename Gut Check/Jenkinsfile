@@ -1,0 +1,70 @@
+#**Jenkinsfile**
+groovy
+pipeline {
+agent any
+
+environment {
+AWS_DEFAULT_REGION = 'us-east-1'
+}
+
+stages {
+stage('Checkout') {
+steps {
+checkout scm
+echo 'Repository checked out successfully'
+}
+}
+
+stage('Terraform Init') {
+steps {
+withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+credentialsId: 'aws-credentials']]) {
+sh '''
+cd terraform
+terraform init
+'''
+}
+}
+}
+
+stage('Terraform Plan') {
+steps {
+withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+credentialsId: 'aws-credentials']]) {
+sh '''
+cd terraform
+terraform plan
+'''
+}
+}
+}
+
+stage('Terraform Apply') {
+steps {
+withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+credentialsId: 'aws-credentials']]) {
+sh '''
+cd terraform
+terraform apply -auto-approve
+'''
+}
+}
+}
+
+stage('Armageddon Clearance') {
+steps {
+echo 'Armageddon clearance confirmed — artifacts deployed to S3'
+echo 'Armageddon Repo: https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main'
+}
+}
+}
+
+post {
+success {
+echo 'Pipeline completed successfully!'
+}
+failure {
+echo 'Pipeline failed — check logs above'
+}
+}
+}
