@@ -167,17 +167,26 @@ See the file itself for exact details. Push this file to your repo along with ev
 
 ## 7. Artifacts / Screenshots
 
-> "SHOW YOUR WORK" ~ Kevin Samuels
+> "How do I know you did it?" ~ Papa Bailly
 
 - [ ] Screenshot: Terraform `init` output
+![alt text](terraform-init-successful.png)
+
 - [ ] Screenshot: Terraform `plan` output
-- [ ] Screenshot: Terraform `apply` — resources created
-- [ ] Screenshot: S3 bucket visible in AWS Console
-- [ ] Screenshot: Screenshots/artifacts uploaded inside the S3 bucket
-- [ ] Screenshot: Jenkins pipeline — all stages green
-- [ ] Screenshot: GitHub webhook delivery confirmation (green checkmark)
-- [ ] Screenshot: GitHub repo showing all files pushed
-- [ ] Screenshot: Armageddon repo link file in repo
+![alt text](terraform-plan.png)
+
+- [x] Screenshot: Screenshots/artifacts uploaded inside the S3 bucket
+![alt text](s3-bucket-created-with-placeholder.png)
+
+- [x] Screenshot: Jenkins pipeline — all stages green
+![alt text](Jenkins-5-stages-green.png)
+
+- [x] Screenshot: GitHub webhook delivery confirmation (green checkmark)
+![alt text](gut-check-webhooks.png) ![alt text](Jenkins-5-stages-green-1.png)
+
+- [x] Screenshot: GitHub repo showing all files pushed
+![alt text](github-repo-showing-files-pushed.png)
+
 
 ---
 
