@@ -5,7 +5,7 @@ default = "us-east-1"
 }
 
 variable "bucket_name" {
-description = "saba_class7_gut_check_bucket"
-type = string
-default = "saba_class7_gut_check_bucket"
+  description = "Name of the S3 bucket"
+  type        = string
+  default     = "saba-class7-gut-check-bucket"
 }

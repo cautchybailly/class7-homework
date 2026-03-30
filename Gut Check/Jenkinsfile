@@ -3,59 +3,60 @@ agent any
 
 environment {
 AWS_DEFAULT_REGION = 'us-east-1'
+TF_IN_AUTOMATION = 'true'
 }
 
 stages {
-stage('Checkout') {
-steps {
-checkout scm
-echo 'Repository checked out successfully'
-}
-}
+    stage('Checkout') {
+    steps {
+    checkout scm
+    echo 'Repository checked out successfully'
+    }
+    }
 
-stage('Terraform Init') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'terraform-cautchy']]) {
-sh '''
-cd "Gut Check/Terraform"
-terraform init
-'''
-}
-}
-}
+    stage('Terraform Init') {
+    steps {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+    credentialsId: 'terraform-cautchy']]) {
+    sh '''
+    cd "Gut Check/Terraform"
+    terraform init
+    '''
+    }
+    }
+    }
 
-stage('Terraform Plan') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'terraform-cautchy']]) {
-sh '''
-cd "Gut Check/Terraform"
-terraform plan
-'''
-}
-}
-}
+    stage('Terraform Plan') {
+    steps {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+    credentialsId: 'terraform-cautchy']]) {
+    sh '''
+    cd "Gut Check/Terraform"
+    terraform plan
+    '''
+    }
+    }
+    }
 
-stage('Terraform Apply') {
-steps {
-withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
-credentialsId: 'terraform-cautchy']]) {
-sh '''
-cd "Gut Check/Terraform"
-terraform apply -auto-approve
-'''
-}
-}
-}
+    stage('Terraform Apply') {
+    steps {
+    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+    credentialsId: 'terraform-cautchy']]) {
+    sh '''
+    cd "Gut Check/Terraform"
+    terraform apply -auto-approve
+    '''
+    }
+    }
+    }
 
-stage('Armageddon Clearance') {
-steps {
-echo 'Armageddon clearance confirmed — artifacts deployed to S3'
-echo 'Armageddon Repo: https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main'
-}
-}
-}
+    stage('Armageddon Clearance') {
+    steps {
+    echo 'Armageddon clearance confirmed — artifacts deployed to S3'
+    echo 'Armageddon Repo: https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main'
+    }
+    }
+    }
 
 post {
 success {
