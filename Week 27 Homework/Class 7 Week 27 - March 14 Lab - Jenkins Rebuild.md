@@ -187,7 +187,9 @@ pipeline github
 
 #### Option B: Docker Deployment
 
-**Step 1 — Dockerfile**
+**Step 1 — Build the Dockerfile**
+In your directory of choice, build the Dockerfile. Your Dockerfile will look like this.
+
 ```dockerfile
 FROM jenkins/jenkins:lts-jdk21
 
@@ -197,6 +199,8 @@ USER root
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
+    git \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 
@@ -211,6 +215,8 @@ USER jenkins
 ```
 
 **Step 2 — Build and Run**
+While still in the same directory, open up the CLI 
+
 ```bash
 docker build -t jenkins-java21 .
 docker run -d \

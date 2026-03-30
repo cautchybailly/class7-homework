@@ -16,9 +16,9 @@ resource "aws_s3_bucket_ownership_controls" "ownership" {
 }
 
 resource "aws_s3_object" "armageddon_clearance" {
-  for_each = fileset("${path.module}/../screenshots/", "*.png")
+  for_each = fileset("${path.module}/../Screenshots/", "*.png")
 
   bucket = aws_s3_bucket.class7_gut_check_bucket.id
   key    = each.value
-  source = "${path.module}/../screenshots/${each.value}"
+  source = "${path.module}/../Screenshots/${each.value}"
 }
