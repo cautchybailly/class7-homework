@@ -47,14 +47,21 @@ https://github.com/jdpayne68/class-7-armageddon-tko-group/tree/main
 class7-gut-check/
 ├── README.md
 ├── TKO-armageddon-link.md (Link to the Armageddon repo)
-├── Jenkinsfile # Pipeline definition
-├── terraform/
+├── Jenkinsfile 
+├── Terraform/
 │ ├── main.tf # S3 bucket resource definition
 │ ├── variables.tf # Input variables
 │ ├── outputs.tf # Output values (bucket name, ARN)
 │ └── provider.tf # AWS provider configuration
-└── screenshots/
-└── theo-armageddon-approval.png
+├── Lab Confirmation Screenshots
+| ├── gut-check-webhooks.png
+| ├── Jenkins-5-stages-green.png
+| ├── outputs.png
+| ├── s3-bucket-created-with-placeholder.png
+| ├── terraform-initi-successful.png
+| ├── terraform-plan.png
+├── Screenshots/
+| └── theo-armageddon-approval.png
 ```
 
 ---
@@ -124,13 +131,13 @@ git init
 git add .
 git commit -m "Class 7 Gut Check — initial commit"
 git branch -M main
-git remote add origin https://github.com/[YOUR-USERNAME]/[YOUR-REPO].git
+git remote add origin https://github.com/cautchybailly/gutcheck.git
 git push -u origin main
 ```
 
 **Step 2 — Configure Webhook in GitHub**
 - Go to your repo → **Settings → Webhooks → Add webhook**
-- Payload URL: `http://[YOUR-JENKINS-IP]:8080/github-webhook/`
+- Payload URL: `http://54.221.83.237:8080/github-webhook/`
 - Content type: `application/json`
 - Events: **Just the push event** (or All events if you want)
 - Click **Add webhook**
@@ -174,11 +181,11 @@ See the file itself for exact details. Push this file to your repo along with ev
 
 ---
 
-## 8. Teardown / Destroy Infrastructure
+## 8. Teardown / Destroy Infrastructure (Optional)
 
 ```bash
 # Destroy the S3 bucket and all contents via Terraform
-cd terraform/
+cd Terraform/
 terraform destroy -auto-approve
 
 # Verify bucket is gone in AWS Console or via CLI
@@ -205,18 +212,15 @@ aws ec2 terminate-instances --instance-ids [YOUR-INSTANCE-ID]
 ## 9. Lessons Learned
 
 ### a. What is relatable to the user/customer?
-[FILL IN — e.g., "End-to-end automation means infrastructure is created, artifacts
-are stored, and pipelines run without manual intervention — exactly how production
-DevOps teams operate."]
+End-to-end automation means infrastructure is created, artifacts are stored, and pipelines run without manual intervention — exactly how production
+DevOps teams operate. Despite the errors that made have needed to be resolved in setting it up the first time, every time that the successful automation is run from there on will be without manual intervention. 
 
 ### b. What struggles did you have?
-[FILL IN — e.g., Webhook not triggering, AWS credential configuration in Jenkins,
-Terraform state issues, S3 bucket naming conflicts (must be globally unique), etc.]
+Webhook not triggering, AWS credential configuration in Jenkins, Terraform state issues, S3 bucket naming conflicts (must be globally unique), etc.
 
 ### c. How did you save money after teardown? Any challenges?
-[FILL IN — e.g., "Ran `terraform destroy` immediately after lab completion.
-S3 storage costs are minimal but terminating the EC2 Jenkins server eliminates
-the largest cost. Verified $0 charges in AWS Cost Explorer after teardown."]
+Ran `terraform destroy` immediately after lab completion.
+S3 storage costs are minimal but terminating the EC2 Jenkins server eliminates the largest cost since any update to the GitHub will trigger the webhook and potentially store more and more in the S3 bucket.
 
 ---
 
@@ -233,7 +237,7 @@ the largest cost. Verified $0 charges in AWS Cost Explorer after teardown."]
 N/A
 
 ### c. Video / Article References
-[\[Learn Jenkins! Complete Jenkins Course - Zero to Hero]](https://www.youtube.com/watch?v=6YZvp2GwT0A)
+Learn Jenkins! Complete Jenkins Course - Zero to Hero : (https://www.youtube.com/watch?v=6YZvp2GwT0A)
 
 
 ### d. Repositories
