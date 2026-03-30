@@ -108,7 +108,7 @@ terraform output
 ```
 
 -------------------------------------------
-PART 2 — Jenkins Pipeline Setup **Make sure that the Jenkinsfile is at the root of your folder and not in a subfolder*
+PART 2 — Jenkins Pipeline Setup 
 -------------------------------------------
 
 **Jenkinsfile**
