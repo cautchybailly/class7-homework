@@ -73,14 +73,14 @@ PART 1 — Terraform: Provision the S3 Bucket
 -------------------------------------------
 Please see the individual Terraform files for the code. Effectively, the code is performing the following:
 
-**provider.tf** |
-This is telling Terraform that we are working with AWS and specifically using version 5.x of the AWS toolkit. It is also letting Terraform know to deploy everything in the region that we specify.
+**01-auth.tf** |
+This is telling Terraform that we are working with AWS and specifically using version 6.x of the AWS toolkit. It is also letting Terraform know to deploy everything in the region that we specify.
 
-**variables.tf** |
-This is our settings panel. To avoid hardcoding things, we define them once here and then reference them anywhere else that they are needed in the Terraform code. It makes things easier to make changes in one place instead of ten different places anytime a setting needs to be changed.
+**02-bucket.tf** |
+This is our bucket creation panel. To avoid hardcoding things, we define them once here and then reference them anywhere else that they are needed in the Terraform code. It makes things easier to make changes in one place instead of ten different places anytime a setting needs to be changed.
 
-**main.tf** |
-This is the "what are we actually building" portion of the code. Specifically, we are building an S3 bucker with the given name and labeling it so that we don't forget what it is for. We also go ahead and make sure that all files uploaded in the S3 bucket have us (the AWS account owner) as the owner of the files (prevents permission headaches). And finally, in this section we let it be knowns 
+**03-bucket_artifacts.tf** |
+This is the "what are we actually building" portion of the code. Specifically, we are storing screenshots and the TKO-Armageddon-link.md file in an S3 bucket with the given name and labeling it so that we don't forget what it is for. 
 
 **outputs.tf** |
 This portion is the "Tell me what got created" portion. Since we want to know the ID and ARN of the bucket that was created, we configure this output file to query and provide these pieces of information after everything has been successfully created. This information will be referenced with other AWS services if we were to continue onwards and need this bucker and can be used to let Jenkins know which specific bucket it needs to interact with.
@@ -114,11 +114,15 @@ PART 2 — Jenkins Pipeline Setup
 **Jenkinsfile**
 Our Jenkinsfile is stating that this is a pipeline and we can run it on any Jenkins server that is available. Before running anything, we set the environment variable so every stage knows which AWS region to use. Then we build on everything in order (stage by stage of course).
 
-Stage 1: grab the code from Github
-Stage 2: initialize Terraform using your AWS credentials that you created and stored for Jenkins
-Stage 3: preview what Terraform is going to build. "Get the invoice before confirming that you are buying it" type of energy
-Stage 4: actually build the S3 bucket
-Stage 5: print confirmation of the build log as proof of completion
+**Stage 1**: grab the code from Github
+
+**Stage 2**: initialize Terraform using your AWS credentials that you created and stored for Jenkins
+
+**Stage 3**: preview what Terraform is going to build. "Get the invoice before confirming that you are buying it" type of energy
+
+**Stage 4**: actually build the S3 bucket
+
+**Stage 5**: print confirmation of the build log as proof of completion
 
 
 -------------------------------------------
